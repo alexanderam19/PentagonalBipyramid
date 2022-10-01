@@ -1,13 +1,9 @@
-//--------------------------------------------------------------------------
-// Developer -- Bryan Crawley, et al.
-// Course ----- CS3233
-// Project ---- Class demo: Lighted Cube
-// Due date --- N/A
-// 
-// Draw a cube, and light it with one light source. Set reflectivity
-// attributes for the faces of the cube. Use default attributes for the
-// light source.
-//--------------------------------------------------------------------------
+//***********************************
+// Author: Aqabal Alvarez (Alex)    *
+// Course: CS3233                   *
+// Project: Pentagonal Bipyramid    *
+// Due date: 09/30/2022             *
+//***********************************
 
 #ifdef _WIN32
 #include <GL/glut.h>
@@ -25,20 +21,9 @@ void display() {
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glEnable(GL_DEPTH_TEST);
-
-    // Enabling blending makes it possible to use the alpha component of the
-    // color to control opacity.
-    glEnable(GL_BLEND);
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-
-    /*glPolygonMode(GL_FRONT, GL_LINE);
-    glPolygonMode(GL_BACK, GL_LINE);
-    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);*/
-
-    // Arguments are: (left, right, bottom, top, near, far)
+    // glOrtho(left, right, bottom, top, near, far)
     glOrtho(-2.0f, 2.0f, -2.0f, 2.0f, -2.0f, 2.0f);
 
     //Getting the 5 points of the pentagonal bipyramid
@@ -47,7 +32,6 @@ void display() {
     int vertexNumber = 5;
     float radius = 1.2f;
     float twoPI = 2 * 3.14159;
-    //float  x = 1.0, z = -1.0; 
     float x = 0, z = 0;
     for (int i = 0; i < 5; i++) {
         pentaX[i] = x + (radius * cosf(i * twoPI / vertexNumber));
@@ -73,72 +57,62 @@ void display() {
 
     //Top Pyramid
     //1st Face
-    //glNormal3i(0, 0, 1);
-    glColor4f(1.0f, 0.0f, 0.0f, 0.7f);   // Red
+    glColor3f(1.0f, 1.0f, 0.0f);
     glVertex3fv(point[0]);
     glVertex3fv(point[1]);
     glVertex3fv(point[2]);
 
     //2nd Face
-    //glNormal3i(1, 0, 0);
-    glColor4f(0.0f, 0.0f, 1.0f, 0.6f);   // Blue
+    glColor3f(1.0f, 0.0f, 0.0f);
     glVertex3fv(point[3]);
     glVertex3fv(point[4]);
     glVertex3fv(point[5]);
 
     //3rd Face
-    //glNormal3i(0, 0, -1);
-    glColor4f(1.0f, 0.35f, 0.0f, 0.8f);  // Orange
+    glColor3f(1.0f, 0.65f, 0.0f);
     glVertex3fv(point[6]);
     glVertex3fv(point[7]);
     glVertex3fv(point[8]);
 
     //4th Face
-    //glNormal3i(-1, 0, 0);
-    glColor3f(1.0f, 1.0f, 1.0f);   // White
+    glColor3f(0.82f, 0.13f, 0.56f);
     glVertex3fv(point[9]);
     glVertex3fv(point[10]);
     glVertex3fv(point[11]);
 
     //5th Face
-    //glNormal3i(0, 1, 0);
-    glColor3f(1.0f, 1.0f, 0.0f);   // Yellow
+    glColor3f(0.63f, 0.13f, 0.94f);
     glVertex3fv(point[12]);
     glVertex3fv(point[13]);
     glVertex3fv(point[14]);
 
     //Bottom pyramid
     //1st Face
-    //glNormal3i(0, 0, 1);
-    glColor4f(1.0f, 0.0f, 0.0f, 0.7f);   // Red
+    glColor3f(0.0f, 0.0f, 0.5f);
     glVertex3fv(point[15]);
     glVertex3fv(point[16]);
     glVertex3fv(point[17]);
 
     //2nd Face
-    //glNormal3i(1, 0, 0);
-    glColor4f(0.0f, 0.0f, 1.0f, 0.6f);   // Blue
+    glColor3f(0.52f, 0.42f, 1.0f);
     glVertex3fv(point[18]);
     glVertex3fv(point[19]);
     glVertex3fv(point[20]);
 
     //3rd Face
-    //glNormal3i(0, 0, -1);
-    glColor4f(1.0f, 0.35f, 0.0f, 0.8f);  // Orange
+    glColor3f(0.0f, 1.0f, 1.0f);
     glVertex3fv(point[21]);
     glVertex3fv(point[22]);
     glVertex3fv(point[23]);
 
     //4th Face
-    //glNormal3i(-1, 0, 0);
-    glColor3f(1.0f, 1.0f, 1.0f);   // White
+    glColor3f(0.0f, 1.0f, 0.0f);
     glVertex3fv(point[24]);
     glVertex3fv(point[25]);
     glVertex3fv(point[26]);
 
     //5th Face
-    //glNormal3i(0, 1, 0);
-    glColor3f(1.0f, 1.0f, 0.0f);   // Yellow
+    glColor3f(0.0f, 1.0f, 0.5f);
     glVertex3fv(point[27]);
     glVertex3fv(point[28]);
     glVertex3fv(point[29]);
@@ -151,7 +125,7 @@ void display() {
 /* Main function: GLUT runs as a console application starting at main()  */
 int main(int argc, char** argv) {
     glutInit(&argc, argv);
-    glutInitWindowSize(640, 640);
+    glutInitWindowSize(840, 840);
     glutInitWindowPosition(50, 50);
     glutCreateWindow("Bypiramid");
     glutDisplayFunc(display);
